@@ -1,6 +1,6 @@
 function externe(msg) {
   function interne() {
-    console.log(msg)
+    console.log(msg);
   }
   return interne;
 }
@@ -26,7 +26,7 @@ for (var i = 0; i < 3; i++) {
 // ^
 // |
 // |                                lg   lg   lg
-// |for { st - st - st } ... 0s ... => - => - =>
+// |for { st - st - st } ... 1s ... => - => - =>
 // +-------------------------------------------------> temps
 //                                  3    3    3
 

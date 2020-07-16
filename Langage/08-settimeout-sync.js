@@ -21,6 +21,6 @@ function pause(delayMs) {
 
 // ... 1s ... 0 ... 1s ...  1 ... 1s ...  2
 for (var i = 0; i < 3; i++) {
-  pause(1000);
+  pause(1000); // block
   console.log(i);
 }
