@@ -6,4 +6,5 @@ try {
     console.log('Tests OK');
 } catch (error) {
     console.log('Tests KO');
+    process.exit(1);
 }

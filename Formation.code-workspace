@@ -8,6 +8,12 @@
 		},
 		{
 			"path": "Random"
+		},
+		{
+			"path": "APIs-Node"
+		},
+		{
+			"path": "Exercice-Build"
 		}
 	],
 	"settings": {}

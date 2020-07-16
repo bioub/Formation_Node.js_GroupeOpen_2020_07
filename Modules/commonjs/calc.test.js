@@ -7,4 +7,5 @@ try {
     console.log(chalk.green('Tests OK'));
 } catch (error) {
     console.log(chalk.red('Tests KO'));
+    process.exit(1);
 }
