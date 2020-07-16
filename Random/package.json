@@ -1,0 +1,25 @@
+{
+  "name": "@formation.tech/random",
+  "version": "1.0.0",
+  "description": "Les fonctions random de MDN",
+  "main": "lib/random.js",
+  "private": true,
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/formation-tech/random.git"
+  },
+  "keywords": [
+    "random",
+    "mdn",
+    "getrandomint"
+  ],
+  "author": "Romain Bohdanowicz <romain.bohdanowicz@formation.tech>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/formation-tech/random/issues"
+  },
+  "homepage": "https://github.com/formation-tech/random#readme"
+}
