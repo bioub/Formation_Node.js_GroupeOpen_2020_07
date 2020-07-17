@@ -3,6 +3,21 @@ const http = require('http');
 
 const app = express();
 
+const users = [
+  {
+    name: 'John',
+    id: 1,
+  },
+  {
+    name: 'Bill',
+    id: 2,
+  },
+  {
+    name: 'Pitt',
+    id: 3,
+  },
+];
+
 // app.use(express.json()); // middleware (plugin) qui fourni
 // req.body parsé depuis le JSON
 
@@ -12,23 +27,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
-  res.send('<h1>Home !</h1>');
-});
-
-app.get('/hello/:name', (req, res) => {
-  res.send(`<h1>Hello ${req.params.name}</h1>`);
-});
-
-app.get('/api/user/me', (req, res) => {
-  res.json({name: 'Romain'});
-});
-
-app.post('/send-email', express.json(), (req, res) => {
-  console.log(req.body);
-  res.json({msg: 'Mail sent', body: req.body});
-});
-
+// GET /api/users -> retourne en JSON le tableau users
+// GET /api/users/:id -> retourne JSON le user dont l'id est passé dans l'URL
+// POST /api/users -> insère dans le tableau le user reçu en body
+// génère un id (Math.random())
+// retourne JSON le user avec l'id
+// Status Code : 201
 
 const server = http.createServer(app);
 
