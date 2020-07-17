@@ -2,6 +2,7 @@ const fs = require("fs-extra");
 const path = require("path");
 const md5 = require("md5");
 const Terser = require("terser");
+const argv = require('minimist')(process.argv.slice(2));
 
 const distPath = path.resolve(__dirname, "dist");
 const srcPath = path.resolve(__dirname, "src");
@@ -30,10 +31,33 @@ async function concatFiles(sourceFilePaths, destPath) {
   const buffers = await Promise.all(
     sourceFilePaths.map((filePath) => fs.readFile(filePath))
   );
-  await fs.writeFile(destPath, Buffer.concat(buffers));
+
+  let buffer = Buffer.concat(buffers);
+
+  if (argv.minify) {
+    let content = buffer.toString('utf-8');
+
+    const { error, code } = Terser.minify(content)
+
+    if (error) {
+      throw new Error('Minify error : ' + error.message);
+    }
+
+    buffer = Buffer.from(code);
+  }
+
+  const hash = md5(buffer);
+
+  if (argv.hash) {
+    destPath = destPath.replace('app.js', `app.${hash}.js`);
+  }
+
+  await fs.writeFile(destPath, buffer);
+
+  return hash;
 }
 
-async function buildHtml() {
+async function buildHtml(hash) {
   let content = await fs.readFile(indexHtmlPath, { encoding: "utf-8" });
 
   // content = content
@@ -43,10 +67,12 @@ async function buildHtml() {
   //   )
   //   .replace('<script src="./js/index.js"></script>', "");
 
+  const fileName = (argv.hash) ? `app.${hash}.js` : 'app.js';
+
   content = content
     .replace(
       /<script.*<\/script>/s,
-      '<script src="./app.js"></script>'
+      `<script src="${fileName}"></script>`
     );
 
   await fs.writeFile(indexHtmlDistPath, content);
@@ -55,8 +81,8 @@ async function buildHtml() {
 (async () => {
   await rmAndMkdir(distPath);
   console.log(distPath + " created");
-  await concatFiles([horlogeJsPath, indexJsPath], appJsDistPath);
+  const hash = await concatFiles([horlogeJsPath, indexJsPath], appJsDistPath);
   console.log("js built");
-  await buildHtml();
+  await buildHtml(hash);
   console.log("html built");
 })();

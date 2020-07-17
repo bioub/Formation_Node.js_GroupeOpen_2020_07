@@ -1,7 +1,7 @@
 (function(global) {
   'use strict';
 
-  class Horloge {
+  class Clock {
     /**
      * @constructor
      * @param {HTMLElement} container
@@ -21,6 +21,6 @@
     }
   }
 
-  global.Horloge = Horloge;
+  global.Clock = Clock;
 
 }(window));

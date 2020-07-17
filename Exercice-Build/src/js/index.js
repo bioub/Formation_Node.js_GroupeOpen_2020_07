@@ -1,10 +1,10 @@
 // Module IIFE
 // Immediately Invoked Function Expression
-(function(global, Horloge) {
+(function(global, Clock) {
   'use strict';
 
   const divElt = document.querySelector('.horloge');
-  const clock = new Horloge(divElt);
+  const clock = new Clock(divElt);
   clock.start();
 
-}(window, Horloge));
+}(window, Clock));

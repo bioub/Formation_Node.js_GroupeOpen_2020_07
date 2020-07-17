@@ -10,5 +10,7 @@
     "serve:prod": "hs dist",
     "build": "node build.js"
   },
-  "dependencies": {}
+  "dependencies": {
+    "minimist": "^1.2.5"
+  }
 }
