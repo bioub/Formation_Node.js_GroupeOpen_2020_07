@@ -1,8 +1,7 @@
 const fs = require("fs-extra");
 const path = require("path");
-const del = require("del");
 const md5 = require("md5");
-const UglifyJS = require("uglify-es");
+const Terser = require("terser");
 
 const distPath = path.resolve(__dirname, "dist");
 const srcPath = path.resolve(__dirname, "src");
