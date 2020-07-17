@@ -1,14 +1,15 @@
 {
-    "dependencies": {
-        "@formation.tech/random": "file:../Random",
-        "chalk": "^4.1.0",
-        "glob": "^7.1.6"
-    },
-    "devDependencies": {
-        "prettier": "^2.0.5"
-    },
-    "scripts": {
-        "start": "node exercice/main.js",
-        "test": "node run-tests.js"
-    }
+  "dependencies": {
+    "@formation.tech/random": "file:../Random",
+    "chalk": "^4.1.0",
+    "glob": "^7.1.6"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5"
+  },
+  "scripts": {
+    "start": "node exercice/main.js",
+    "test": "node run-tests.js",
+    "prettier": "prettier --write '**/*.{mjs,js,json}'"
+  }
 }

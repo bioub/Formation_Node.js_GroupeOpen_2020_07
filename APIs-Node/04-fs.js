@@ -33,7 +33,8 @@ fs.readFile(packagePath, { encoding: 'utf-8' }, (err, content) => {
 });
 
 // Promise based Async
-fs.promises.readFile(packagePath, { encoding: 'utf-8' })
+fs.promises
+  .readFile(packagePath, { encoding: 'utf-8' })
   .then((content) => fs.promises.writeFile(packageCopyPath, content))
   .then(() => console.log('DONE'))
   .catch((err) => console.log(err.message));
@@ -41,7 +42,8 @@ fs.promises.readFile(packagePath, { encoding: 'utf-8' })
 const fse = require('fs-extra');
 
 // fs-extra implémente les promesses depuis longtemps
-fse.readFile(packagePath, { encoding: 'utf-8' })
+fse
+  .readFile(packagePath, { encoding: 'utf-8' })
   .then((content) => fse.writeFile(packageCopyPath, content))
   .then(() => console.log('DONE'))
   .catch((err) => console.log(err.message));
@@ -53,7 +55,9 @@ timeout(1000).then(() => console.log('1s'));
 
 async function copy() {
   try {
-    const content = await fs.promises.readFile(packagePath, { encoding: 'utf-8' });
+    const content = await fs.promises.readFile(packagePath, {
+      encoding: 'utf-8',
+    });
     await fs.promises.writeFile(packageCopyPath, content);
     console.log('DONE');
   } catch (err) {
@@ -61,7 +65,9 @@ async function copy() {
   }
 }
 
-copy();
+copy()
+  // .then(() => console.log('DONE'))
+  // .catch((err) => console.log(err.message));
 
 // Stage 3 Top level await (TypeScript 3.8+)
 // try {

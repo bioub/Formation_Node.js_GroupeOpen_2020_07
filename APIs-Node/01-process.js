@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 // utiliser minimist ou yargs
 console.log(process.argv.slice(2));
 
